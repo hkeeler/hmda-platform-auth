@@ -49,7 +49,9 @@ USER jboss
 RUN cd /opt/jboss/keycloak/modules/system/layers/keycloak/com/thoughtworks/xstream/main/ && \
     rm -f xstream-1.4.9.jar && \
     curl -s -O http://central.maven.org/maven2/com/thoughtworks/xstream/xstream/1.4.10/xstream-1.4.10.jar && \
-    sed -i -e 's/1\.4\.9/1.4.10/g' module.xml
+    sed -i -e 's/1\.4\.9/1.4.10/g' module.xml && \
+    rm -rf /opt/jboss/keycloak/modules/system/layers/base/org/wildfly/extension/picketlink/ && \
+    rm -rf /opt/jboss/keycloak/modules/system/layers/base/org/picketlink/
 
 # Build the Keycloak authenticator SPI
 # NOTE: If we develop more SPIs, we may want to iterate over a directory structure, building as we go.
